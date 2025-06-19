@@ -6,7 +6,12 @@ class CadastrarUsuario(models.Model):
     sobrenome = models.CharField(max_length=50)
     sexo = models.CharField(max_length=10, choices=[("masculino", "Masculino"), ("feminino", "Feminino")])
     dia_nasc = models.IntegerField()
-    mes_nasc = models.CharField()
+    mes_nasc = models.CharField(max_length=20, choices=[
+        ("janeiro", "Janeiro"), ("fevereiro", "Fevereiro"), ("março", "Março"),
+        ("abril", "Abril"), ("maio", "Maio"), ("junho", "Junho"),
+        ("julho", "Julho"), ("agosto", "Agosto"), ("setembro", "Setembro"),
+        ("outubro", "Outubro"), ("novembro", "Novembro"), ("dezembro", "Dezembro"),
+    ])
     ano_nasc = models.IntegerField()
     cpf = models.CharField(max_length=11, unique=True)
     telefone = models.CharField(max_length=15)   

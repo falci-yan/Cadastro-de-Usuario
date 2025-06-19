@@ -2,10 +2,10 @@ from django.shortcuts import render
 from .models import CadastrarUsuario
 
 def home(request):
-    return render(request, 'home.html', name="home")
+    return render(request, 'home.html')
 
 def cadastroUsuarioPage(request):
-    return render(request, 'cadastro.html', name="cadastro")
+    return render(request, 'cadastro.html')
 
 def CadastrarUsuario(request):
     NovoUsuario = CadastrarUsuario()
