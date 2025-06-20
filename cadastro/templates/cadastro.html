@@ -13,37 +13,36 @@
     </header>
 
     <main>
-        <form method="post" action="{% url 'cadastrar_usuario' %}">
+        <form method="post" action="{% url 'CadastrarUsuario' %}">
             {% csrf_token %}
             <label for="nome">Nome:</label>
             <input type="text" id="nome" name="nome"  required>
 
-            <br>
             <label for="sobrenome">Sobrenome:</label>
             <input type="text" id="sobrenome" name="sobrenome" required>
 
-            <br>
-            <label for="sexo">Sexo: </label>
-            <input type="radio" id="sexo_masculino" name="sexo" value="masculino"> Masculino</input>
-            <input type="radio" id="sexo_feminino" name="sexo" value="feminino"> Feminino</input>
+            <div>
+                <label for="sexo">Sexo: </label>
+                <input type="radio" id="sexo_masculino" name="sexo" value="masculino"> Masculino</input>
+                <input type="radio" id="sexo_feminino" name="sexo" value="feminino"> Feminino</input>
+            </div>
 
-            <br>
-            <label for="data_nascimento">Data de Nascimento:</label>
-            <input type="date" id="data_nascimento" name="data_nascimento" required>
-
-            <br>
+            <label for="ano_nascimento">Data de Nascimento:</label>
+            <combobox id="ano_nascimento" name="ano_nascimento" required>
+                <option value="">Selecione</option>
+                {% for ano in anos %}
+                        <option value="{{ ano }}">{{ ano }}</option>
+                {% endfor %}
+            </combobox>
             <label for="cpf">CPF:</label>
             <input type="text" id="cpf" name="cpf" pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" placeholder="000.000.000-00" required>
 
-            <br>
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
             
-            <br>
             <label for="telefone">Telefone:</label>
             <input type="tel" id="telefone" name="telefone" pattern="\(\d{2}\) \d{4,5}-\d{4}" placeholder="(00) 00000-0000" required>
 
-            <br>
             <button type="submit">Cadastrar</button>
         </form>
     </main>
