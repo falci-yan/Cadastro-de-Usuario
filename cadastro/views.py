@@ -2,28 +2,32 @@ from django.shortcuts import render
 from .models import CadastrarUsuario
 
 def home(request):
-    return render(request, 'home.html')
+    usuarios = {
+            'usuarios': CadastrarUsuario.objects.all()
+        }
+
+    return render(request, 'home.html', usuarios)
 
 def cadastroUsuarioPage(request):
     return render(request, 'cadastro.html')
 
-def CadastrarUsuario(request):
-    NovoUsuario = CadastrarUsuario()
-    
-    NovoUsuario.nome = request.POST.get('nome')
-    NovoUsuario.sobrenome = request.POST.get('sobrenome')
-    NovoUsuario.sexo = request.POST.get('sexo')
-    NovoUsuario.dia_nasc = request.POST.get('dia_nasc')
-    NovoUsuario.mes_nasc = request.POST.get('mes_nasc')
-    NovoUsuario.ano_nasc = request.POST.get('ano_nasc')
-    NovoUsuario.cpf = request.POST.get('cpf')
-    NovoUsuario.telefone = request.POST.get('telefone')
-    NovoUsuario.email = request.POST.get('email')
-    
-    NovoUsuario.save()
-    
-    NovoUsuario = {
-        'NovoUsuario': CadastrarUsuario.objects.all()    
-    }
+def criarUsuario(request):
+    if request.method == 'POST':
+        NovoUsuario = CadastrarUsuario()
 
-    return render(request, 'home.html', context=NovoUsuario)
+        NovoUsuario.nome = request.POST.get('nome')
+        NovoUsuario.sobrenome = request.POST.get('sobrenome')
+        NovoUsuario.sexo = request.POST.get('sexo')
+        NovoUsuario.cpf = request.POST.get('cpf')
+        NovoUsuario.telefone = request.POST.get('telefone')
+        NovoUsuario.email = request.POST.get('email')
+
+        NovoUsuario.save()
+
+        contexto = {
+            'NovoUsuario': CadastrarUsuario.objects.all()
+        }
+
+        return render(request, 'home.html', contexto)
+    
+    return render(request, 'home.html')
