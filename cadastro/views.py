@@ -28,6 +28,6 @@ def criarUsuario(request):
             'NovoUsuario': CadastrarUsuario.objects.all()
         }
 
-        return render(request, 'home.html', contexto)
+        return render(request, 'home.html')
     
     return render(request, 'home.html')
