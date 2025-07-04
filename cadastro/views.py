@@ -28,6 +28,13 @@ def criarUsuario(request):
             'NovoUsuario': CadastrarUsuario.objects.all()
         }
 
-        return render(request, 'home.html')
+        return render(request, 'home.html', context=contexto)
+    
+    return render(request, 'home.html', context=contexto)
+
+
+def deleteData(request):
+    obj = CadastrarUsuario.objects.get(id_cadastro=5)
+    obj.delete()
     
     return render(request, 'home.html')
