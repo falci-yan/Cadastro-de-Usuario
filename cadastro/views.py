@@ -34,7 +34,7 @@ def criarUsuario(request):
 
 
 def deleteData(request):
-    obj = CadastrarUsuario.objects.get(id_cadastro=6)
+    obj = CadastrarUsuario.objects.get(id_cadastro=1)
     obj.delete()
     
     return render(request, 'home.html')
